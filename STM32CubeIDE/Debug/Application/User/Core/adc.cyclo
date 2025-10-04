@@ -1,0 +1,4 @@
+C://TouchGFXProjects/TestApp/Core/Src/adc.c:31:6:MX_ADC1_Init	3
+C://TouchGFXProjects/TestApp/Core/Src/adc.c:88:6:MX_ADC2_Init	3
+C://TouchGFXProjects/TestApp/Core/Src/adc.c:147:6:HAL_ADC_MspInit	7
+C://TouchGFXProjects/TestApp/Core/Src/adc.c:223:6:HAL_ADC_MspDeInit	5

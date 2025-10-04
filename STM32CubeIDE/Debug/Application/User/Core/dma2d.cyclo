@@ -1,0 +1,3 @@
+C://TouchGFXProjects/TestApp/Core/Src/dma2d.c:30:6:MX_DMA2D_Init	2
+C://TouchGFXProjects/TestApp/Core/Src/dma2d.c:56:6:HAL_DMA2D_MspInit	2
+C://TouchGFXProjects/TestApp/Core/Src/dma2d.c:76:6:HAL_DMA2D_MspDeInit	2

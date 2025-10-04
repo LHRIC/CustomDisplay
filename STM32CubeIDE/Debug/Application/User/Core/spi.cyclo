@@ -1,0 +1,4 @@
+C://TouchGFXProjects/TestApp/Core/Src/spi.c:31:6:MX_SPI1_Init	3
+C://TouchGFXProjects/TestApp/Core/Src/spi.c:82:6:MX_SPI2_Init	3
+C://TouchGFXProjects/TestApp/Core/Src/spi.c:133:6:HAL_SPI_MspInit	5
+C://TouchGFXProjects/TestApp/Core/Src/spi.c:210:6:HAL_SPI_MspDeInit	3

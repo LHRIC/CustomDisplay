@@ -1,0 +1,5 @@
+C://TouchGFXProjects/TestApp/Core/Src/app_freertos.c:68:6:vApplicationMallocFailedHook	4	static
+C://TouchGFXProjects/TestApp/Core/Src/app_freertos.c:84:6:vApplicationIdleHook	8	static
+C://TouchGFXProjects/TestApp/Core/Src/app_freertos.c:101:6:vApplicationStackOverflowHook	16	static
+C://TouchGFXProjects/TestApp/Core/Src/app_freertos.c:114:6:MX_FREERTOS_Init	8	static
+C://TouchGFXProjects/TestApp/Core/Src/app_freertos.c:156:6:StartDefaultTask	16	static
