@@ -7,15 +7,64 @@
   <Texts>
     <TextGroup Id="Group1" />
     <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_PJJZ" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Coolant (C)</Translation>
+        <Translation Language="alphabetnumber">New Text</Translation>
+      </Text>
+      <Text Id="__SingleUse_MBOH" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">0.0</Translation>
+        <Translation Language="alphabetnumber">New Text</Translation>
+      </Text>
+      <Text Id="__SingleUse_QCQ7" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+        <Translation Language="alphabetnumber">&lt;*&gt;1234567890.,</Translation>
+      </Text>
+      <Text Id="__SingleUse_47DS" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">0</Translation>
+        <Translation Language="alphabetnumber">New Text</Translation>
+      </Text>
+      <Text Id="__SingleUse_U0Z8" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+        <Translation Language="alphabetnumber">&lt;*&gt;1234567890.,</Translation>
+      </Text>
+      <Text Id="__SingleUse_UXRI" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">0.0</Translation>
+        <Translation Language="alphabetnumber">New Text</Translation>
+      </Text>
+      <Text Id="__SingleUse_3GGP" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+        <Translation Language="alphabetnumber">&lt;*&gt;1234567890.,</Translation>
+      </Text>
+      <Text Id="__SingleUse_89Y8" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Throttle</Translation>
+        <Translation Language="alphabetnumber">New Text</Translation>
+      </Text>
+      <Text Id="CoolantLabel" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Coolant (C)</Translation>
+        <Translation Language="alphabetnumber">New Text</Translation>
+      </Text>
+      <Text Id="__SingleUse_D77C" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Battery</Translation>
+        <Translation Language="alphabetnumber">New Text</Translation>
+      </Text>
+      <Text Id="__SingleUse_Z99U" Alignment="Left" TypographyId="Large">
+        <Translation Language="GB">0</Translation>
+        <Translation Language="alphabetnumber">New Text</Translation>
+      </Text>
+      <Text Id="__SingleUse_D4O1" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Gear</Translation>
+        <Translation Language="alphabetnumber">New Text</Translation>
+      </Text>
       <Text Id="id1" Alignment="Left" TypographyId="Default">
-        <Translation Language="GB">Speed: &lt;value&gt;</Translation>
+        <Translation Language="GB">Test: &lt;value&gt;</Translation>
         <Translation Language="alphabetnumber">&lt;*&gt;1234567890.,</Translation>
       </Text>
     </TextGroup>
   </Texts>
   <Typographies>
-    <Typography Id="Default" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="Large" Font="verdana.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Default" Font="verdana.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Large" Font="verdana.ttf" Size="160" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Small" Font="verdana.ttf" Size="10" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Typography1" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
   </Typographies>
 </TextDatabase>

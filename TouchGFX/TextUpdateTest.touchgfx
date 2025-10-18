@@ -8,22 +8,22 @@
             "Type": "Box",
             "Name": "box1",
             "Width": 800,
-            "Height": 480,
-            "Color": {
-              "Red": 252,
-              "Green": 96,
-              "Blue": 96
-            }
+            "Height": 480
           },
           {
             "Type": "TextArea",
             "Name": "textArea1",
-            "X": 344,
-            "Y": 44,
-            "Width": 78,
-            "Height": 24,
+            "X": 15,
+            "Y": 147,
+            "Width": 114,
+            "Height": 48,
             "TextId": "id1",
             "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
             "AutoSize": true,
             "Wildcard1": {
               "UseBuffer": true,
@@ -31,30 +31,163 @@
             }
           },
           {
-            "Type": "Button",
-            "Name": "button1",
-            "X": 280,
-            "Y": 174,
-            "Width": 240,
-            "Height": 50,
-            "Pressed": "__generated\\alternate_theme_images_widgets_button_regular_height_50_medium_rounded_pressed.png",
-            "Released": "__generated\\alternate_theme_images_widgets_button_regular_height_50_medium_rounded_normal.png",
-            "Preset": "alternate_theme\\presets\\button\\regular\\height_50\\medium_rounded_normal.json"
+            "Type": "TextArea",
+            "Name": "BatteryValue",
+            "X": 114,
+            "Y": 389,
+            "Width": 65,
+            "Height": 48,
+            "TextId": "__SingleUse_3GGP",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "AutoSize": true,
+            "Wildcard1": {
+              "TextId": "__SingleUse_UXRI",
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "CoolantValue",
+            "X": 383,
+            "Y": 389,
+            "Width": 25,
+            "Height": 48,
+            "TextId": "__SingleUse_U0Z8",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "AutoSize": true,
+            "Wildcard1": {
+              "TextId": "__SingleUse_47DS",
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
+          },
+          {
+            "Type": "TextArea",
+            "Name": "ThrottleValue",
+            "X": 632,
+            "Y": 389,
+            "Width": 65,
+            "Height": 48,
+            "TextId": "__SingleUse_QCQ7",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "AutoSize": true,
+            "Wildcard1": {
+              "TextId": "__SingleUse_MBOH",
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
+          },
+          {
+            "Type": "ImageProgress",
+            "Name": "imageProgress1",
+            "X": 245,
+            "Y": 25,
+            "Width": 300,
+            "Height": 10,
+            "FileNameProgress": "__generated\\alternate_theme_images_widgets_imageprogress_plain_normal_medium_active.png",
+            "AnchorAtZero": true,
+            "Direction": "Right",
+            "Preset": "alternate_theme\\presets\\imageprogress\\plain\\normal\\medium_active.json",
+            "FileNameBackground": "__generated\\alternate_theme_images_widgets_imageprogress_plain_normal_medium.png",
+            "IndicatorPositionWidth": 300,
+            "IndicatorPositionHeight": 10,
+            "ProgressRangeMax": 100,
+            "ProgressInitialValue": 60
+          },
+          {
+            "Type": "TextArea",
+            "Name": "GearLabel",
+            "X": 352,
+            "Y": 55,
+            "Width": 96,
+            "Height": 48,
+            "TextId": "__SingleUse_D4O1",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 165
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "BatteryLabel",
+            "X": 72,
+            "Y": 320,
+            "Width": 148,
+            "Height": 48,
+            "TextId": "__SingleUse_D77C",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 165
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "CoolantLabel",
+            "X": 285,
+            "Y": 320,
+            "Width": 230,
+            "Height": 48,
+            "TextId": "__SingleUse_PJJZ",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 165
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "ThrottleLabel",
+            "X": 585,
+            "Y": 320,
+            "Width": 158,
+            "Height": 48,
+            "TextId": "__SingleUse_89Y8",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 165
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "GearValue",
+            "X": 349,
+            "Y": 103,
+            "Width": 102,
+            "Height": 162,
+            "TextId": "__SingleUse_Z99U",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "AutoSize": true
           }
         ],
-        "Interactions": [
-          {
-            "InteractionName": "textInteraction",
-            "Trigger": {
-              "Type": "TriggerClicked",
-              "TriggerComponent": "button1"
-            },
-            "Action": {
-              "Type": "ActionCustom",
-              "FunctionName": "updateText"
-            }
-          }
-        ]
+        "Interactions": []
       }
     ],
     "CustomContainerDefinitions": [],
