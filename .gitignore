@@ -1,2 +1,8 @@
+# Build Objects
 build
 Debug
+
+# TouchGFX Generated Files
+generated
+simulator/msvs/.vs
+
