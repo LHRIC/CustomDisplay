@@ -9,7 +9,7 @@ public:
     ModelListener() : model(0) {}
     
     virtual ~ModelListener() {}
-    virtual void onCanMessageReceived(uint16_t value) {}
+    virtual void onCanMessageReceived(uint16_t value, uint8_t assigner) {}
 
     void bind(Model* m)
     {

@@ -52,11 +52,46 @@ void Screen1View::handleTickEvent()
 //    }
 }
 
-void Screen1View::updateCanValue(uint16_t value)
+void Screen1View::updateCanValue(uint16_t value, uint8_t assigner)
 {
     // Update text area or gauge
-	counter = value;
-    Unicode::snprintf(textArea1Buffer, TEXTAREA1_SIZE, "%d", counter);
-    textArea1.resizeToCurrentText(); // optional, will resize the box to fit the text if it is too small
-    textArea1.invalidate();
+	switch(assigner){
+	case 0://rpm progress bar
+		imageProgress1.setValue(value);
+		imageProgress1.invalidate();
+		break;
+	case 1:
+		Unicode::snprintfFloat(ThrottleValueBuffer, THROTTLEVALUE_SIZE, "%4.1f", value / 10.0);
+		//CoolantValue.resizeToCurrentText(); // optional, will resize the box to fit the text if it is too small
+		ThrottleValue.invalidate();
+		break;
+	case 2:
+	    Unicode::snprintf(CoolantValueBuffer, COOLANTVALUE_SIZE, "%u", value);
+	    //CoolantValue.resizeToCurrentText(); // optional, will resize the box to fit the text if it is too small
+	    CoolantValue.invalidate();
+		break;
+	case 3:
+		Unicode::snprintfFloat(BatteryValueBuffer, BATTERYVALUE_SIZE, "%4.1f", value / 10.0);
+		//CoolantValue.resizeToCurrentText(); // optional, will resize the box to fit the text if it is too small
+		BatteryValue.invalidate();
+		break;
+	case 4:
+		if(value > 10){//must be negative (-1) because our int8_t got casted due to poor design :(
+			Unicode::snprintf(GearValueBuffer, GEARVALUE_SIZE, "%s", "-");
+			//CoolantValue.resizeToCurrentText(); // optional, will resize the box to fit the text if it is too small
+			GearValue.invalidate();
+		}
+		else{//positive
+			Unicode::snprintf(GearValueBuffer, GEARVALUE_SIZE, "%d", value);
+			//CoolantValue.resizeToCurrentText(); // optional, will resize the box to fit the text if it is too small
+			GearValue.invalidate();
+		}
+		break;
+//	default://test values
+//		Unicode::snprintf(textArea1Buffer, TEXTAREA1_SIZE, "%u", value);
+//		//textArea1.resizeToCurrentText(); // optional, will resize the box to fit the text if it is too small
+//		textArea1.invalidate();
+//		break;
+	}
+
 }

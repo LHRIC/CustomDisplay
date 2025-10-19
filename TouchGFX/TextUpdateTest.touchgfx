@@ -12,30 +12,10 @@
           },
           {
             "Type": "TextArea",
-            "Name": "textArea1",
-            "X": 15,
-            "Y": 147,
-            "Width": 114,
-            "Height": 48,
-            "TextId": "id1",
-            "TextRotation": "0",
-            "Color": {
-              "Red": 255,
-              "Green": 255,
-              "Blue": 255
-            },
-            "AutoSize": true,
-            "Wildcard1": {
-              "UseBuffer": true,
-              "BufferSize": 10
-            }
-          },
-          {
-            "Type": "TextArea",
             "Name": "BatteryValue",
-            "X": 114,
+            "X": 76,
             "Y": 389,
-            "Width": 65,
+            "Width": 142,
             "Height": 48,
             "TextId": "__SingleUse_3GGP",
             "TextRotation": "0",
@@ -54,9 +34,9 @@
           {
             "Type": "TextArea",
             "Name": "CoolantValue",
-            "X": 383,
+            "X": 349,
             "Y": 389,
-            "Width": 25,
+            "Width": 103,
             "Height": 48,
             "TextId": "__SingleUse_U0Z8",
             "TextRotation": "0",
@@ -75,9 +55,9 @@
           {
             "Type": "TextArea",
             "Name": "ThrottleValue",
-            "X": 632,
+            "X": 585,
             "Y": 389,
-            "Width": 65,
+            "Width": 158,
             "Height": 48,
             "TextId": "__SingleUse_QCQ7",
             "TextRotation": "0",
@@ -107,8 +87,8 @@
             "FileNameBackground": "__generated\\alternate_theme_images_widgets_imageprogress_plain_normal_medium.png",
             "IndicatorPositionWidth": 300,
             "IndicatorPositionHeight": 10,
-            "ProgressRangeMax": 100,
-            "ProgressInitialValue": 60
+            "ProgressRangeMax": 15000,
+            "ProgressRangeSteps": 100
           },
           {
             "Type": "TextArea",
@@ -143,9 +123,9 @@
           {
             "Type": "TextArea",
             "Name": "CoolantLabel",
-            "X": 285,
+            "X": 263,
             "Y": 320,
-            "Width": 230,
+            "Width": 275,
             "Height": 48,
             "TextId": "__SingleUse_PJJZ",
             "TextRotation": "0",
@@ -176,7 +156,7 @@
             "X": 349,
             "Y": 103,
             "Width": 102,
-            "Height": 162,
+            "Height": 189,
             "TextId": "__SingleUse_Z99U",
             "TextRotation": "0",
             "Color": {
@@ -184,7 +164,12 @@
               "Green": 255,
               "Blue": 255
             },
-            "AutoSize": true
+            "AutoSize": true,
+            "Wildcard1": {
+              "TextId": "__SingleUse_430Q",
+              "UseBuffer": true,
+              "BufferSize": 10
+            }
           }
         ],
         "Interactions": []
