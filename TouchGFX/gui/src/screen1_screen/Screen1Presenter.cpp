@@ -17,7 +17,7 @@ void Screen1Presenter::deactivate()
 
 }
 
-void Screen1Presenter::onCanMessageReceived(uint16_t value, uint8_t assigner)
+void Screen1Presenter::onCanMessageReceived(CAN_value_t CAN_val)
 {
-    view.updateCanValue(value, assigner);
+    view.updateCanValue(CAN_val);
 }
