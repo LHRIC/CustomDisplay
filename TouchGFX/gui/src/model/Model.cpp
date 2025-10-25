@@ -21,13 +21,14 @@ Model::Model() : modelListener(0)
 //define values the screen will need to display
 
 //helper functions to read CAN data
-uint16_t CAN_GetData_16(uint8_t startByte, uint8_t rxData[8]){
+inline uint16_t CAN_GetData_16(uint8_t startByte, uint8_t rxData[8]){
 	return (rxData[startByte] << 8) | rxData[startByte + 1];
 }
 
-uint8_t CAN_GetData_8(uint8_t startByte, uint8_t rxData[8]){
+inline uint8_t CAN_GetData_8(uint8_t startByte, uint8_t rxData[8]){
 	return rxData[startByte];
 }
+
 
 void Model::tick()
 {
@@ -42,51 +43,34 @@ void Model::tick()
         {
         	switch(rxHeader.Identifier){//switch case based on incoming CAN ID
         	//IMPORTANT: THIS IS FOR BOTH RPM AND THROTTLE
-        	case CAN_ID_RPM:{
-        		uint16_t CANvalue = CAN_GetData_16(rpm.startByte, rxData);
-
-        		//update value if different and signal that a change is made
-				if(rpm.value.u16 != CANvalue){
-					rpm.value.u16 = CANvalue;
-					modelListener->onCanMessageReceived(rpm);
-				}
+        	case CAN_ID_RPM_THROTTLE:{
+        		//read raw CAN data
+        		uint16_t CANValue = CAN_GetData_16(rpm.startByte, rxData);
+        		//if the value is different, update it and send signal to viewer
+        		if(CAN_value_updateValue(&rpm, CANValue)) modelListener->onCanMessageReceived(&rpm);
 
 				//for throttle
-				CANvalue = CAN_GetData_16(throttle.startByte, rxData);
-
-				//update value if different and signal that a change is made
-				float fvalue = CANvalue / 10.0;
-				if(throttle.value.f != fvalue){
-					 throttle.value.f = fvalue;
-					 modelListener->onCanMessageReceived(throttle);
-				}}
+				CANValue = CAN_GetData_16(throttle.startByte, rxData);
+				if(CAN_value_updateValue(&throttle, CANValue)) modelListener->onCanMessageReceived(&throttle);
+        	}
         		break;
 
         	case CAN_ID_COOLANT:{//coolant
-        		uint16_t CANvalue = CAN_GetData_16(coolant.startByte, rxData);
-        		uint16_t celsiusValue = CANvalue / 10 - 273;
-				//update value if different and signal that a change is made
-				if(coolant.value.u16 != celsiusValue){
-					coolant.value.u16 = celsiusValue;
-					modelListener->onCanMessageReceived(coolant);
-				}}
+        		uint16_t CANValue = CAN_GetData_16(coolant.startByte, rxData);
+        		if(CAN_value_updateValue(&coolant, CANValue)) modelListener->onCanMessageReceived(&coolant);
+        	}
 				break;
 
         	case CAN_ID_BATTERY:{//battery
-				uint16_t CANvalue = CAN_GetData_16(battery.startByte, rxData);
-				float fvalue = CANvalue / 10.0;
-				if(battery.value.f != fvalue){
-					 battery.value.f = fvalue;
-					 modelListener->onCanMessageReceived(battery);
-				}}
+				uint16_t CANValue = CAN_GetData_16(battery.startByte, rxData);
+				if(CAN_value_updateValue(&battery, CANValue)) modelListener->onCanMessageReceived(&battery);
+        	}
 				break;
 
         	case CAN_ID_GEAR:{//gear (int8_t)
-        		int8_t CANvalue = CAN_GetData_8(gear.startByte, rxData);
-				if(gear.value.i8 != CANvalue){
-					gear.value.i8 = CANvalue;
-					modelListener->onCanMessageReceived(gear);
-				}}
+        		int8_t CANValue = CAN_GetData_8(gear.startByte, rxData);
+        		if(CAN_value_updateValue(&gear, CANValue)) modelListener->onCanMessageReceived(&gear);
+        	}
 				break;
         	}
         }

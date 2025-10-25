@@ -12,7 +12,7 @@ public:
     ModelListener() : model(0) {}
     
     virtual ~ModelListener() {}
-    virtual void onCanMessageReceived(CAN_value_t CAN_val) {}
+    virtual void onCanMessageReceived(CAN_value_t* CAN_val) {}
 
     void bind(Model* m)
     {

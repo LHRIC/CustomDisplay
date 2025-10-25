@@ -68,47 +68,19 @@ void Screen1View::handleTickEvent()
 //    }
 }
 
-void Screen1View::updateCanValue(CAN_value_t CAN_val)
+void Screen1View::updateCanValue(CAN_value_t* CAN_val)
 {
     //Update text area or progress bar (make a case for anything with special functionality, default is for text)
-	switch(CAN_val.valueIdentifier){
+	switch(CAN_val->valueIdentifier){
 	case RPM://rpm progress bar
-		imageProgress1.setValue(CAN_val.value.u16);
+		imageProgress1.setValue(CAN_val->value.u16);
 		imageProgress1.invalidate();
 		break;
-//	case THROTTLE:
-//		Unicode::snprintfFloat(ThrottleValueBuffer, THROTTLEVALUE_SIZE, "%4.1f", CAN_val.value.f);
-//		//CoolantValue.resizeToCurrentText(); // optional, will resize the box to fit the text if it is too small
-//		ThrottleValue.invalidate();
-//		break;
-//	case COOLANT:
-//	    Unicode::snprintf(CoolantValueBuffer, COOLANTVALUE_SIZE, "%u", CAN_val.value.u16);
-//	    //CoolantValue.resizeToCurrentText(); // optional, will resize the box to fit the text if it is too small
-//	    CoolantValue.invalidate();
-//		break;
-//	case BATTERY:
-//		Unicode::snprintfFloat(BatteryValueBuffer, BATTERYVALUE_SIZE, "%4.1f", CAN_val.value.f);
-//		//CoolantValue.resizeToCurrentText(); // optional, will resize the box to fit the text if it is too small
-//		BatteryValue.invalidate();
-//		break;
-//	case GEAR://can be -1
-//			Unicode::snprintf(GearValueBuffer, GEARVALUE_SIZE, "%d", CAN_val.value.i8);
-//			//CoolantValue.resizeToCurrentText(); // optional, will resize the box to fit the text if it is too small
-//			GearValue.invalidate();
 	default://text update
-		//fill the buffer based on
-		switch(CAN_val.type){
-		case CAN_TYPE_FLOAT16:
-			Unicode::snprintfFloat(CAN_val.bufferPtr, CAN_val.bufferSize, "%4.1f", CAN_val.value.f);
-			break;
-		case CAN_TYPE_INT8:
-			Unicode::snprintf(CAN_val.bufferPtr, CAN_val.bufferSize, "%d", CAN_val.value.i8);
-			break;
-		case CAN_TYPE_UINT16:
-			Unicode::snprintf(CAN_val.bufferPtr, CAN_val.bufferSize, "%u", CAN_val.value.u16);
-			break;
-		}
-		CAN_val.textAreaPtr->invalidate();
+		//fill the buffer based on updated value
+		CAN_value_updateTextBuffer(CAN_val);
+		//invalidate text buffer
+		CAN_val->textAreaPtr->invalidate();
 		break;
 	}
 
