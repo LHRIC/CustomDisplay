@@ -184,6 +184,9 @@
     <Filter Include="Header Files\generated\simulator\include\simulator\video">
       <UniqueIdentifier>2AE91406-A1A7-20D1-EFD3-9B3E06620BB1</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\gui\include">
+      <UniqueIdentifier>7F520C9E-EBB8-A287-AAA4-1EE835706A40</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(TouchGFXReleasePath)\framework\source\platform\driver\touch\SDL2TouchController.cpp">
@@ -675,6 +678,9 @@
     </ClInclude>
     <ClInclude Include="..\..\generated\simulator\include\simulator\video\SoftwareMJPEGDecoder.hpp">
       <Filter>Header Files\generated\simulator\include\simulator\video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\can_types.hpp">
+      <Filter>Header Files\gui\include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

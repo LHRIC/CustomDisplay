@@ -43,8 +43,6 @@ void TouchGFXHAL::initialize()
     instrumentation.init();
     setMCUInstrumentation(&instrumentation);
     enableMCULoadCalculation(true);
-
-
 }
 
 /**

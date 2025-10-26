@@ -14,7 +14,8 @@ CAN_value_t rpm = {
 	CAN_TYPE_UINT16,
 	RPM,
 	1.0,
-	0.0
+	0.0,
+	true
 };
 CAN_value_t coolant = {
     CAN_ID_COOLANT,
@@ -23,7 +24,8 @@ CAN_value_t coolant = {
 	CAN_TYPE_UINT16,
 	COOLANT,
 	0.1,
-	-273.0
+	-273.0,
+	true
 };
 //-1-6 (-1 is an error)
 CAN_value_t gear = {
@@ -33,7 +35,8 @@ CAN_value_t gear = {
 	CAN_TYPE_INT8,
 	GEAR,
 	1.0,
-	0.0
+	0.0,
+	true
 };
 
 CAN_value_t throttle = {
@@ -43,7 +46,8 @@ CAN_value_t throttle = {
 	CAN_TYPE_FLOAT16,
 	THROTTLE,
 	0.1,//10
-	0
+	0,
+	true
 };
 
 CAN_value_t battery = {
@@ -53,8 +57,12 @@ CAN_value_t battery = {
 	CAN_TYPE_FLOAT16,
 	BATTERY,
 	0.1,
-	0.0
+	0.0,
+	true
 };
+
+
+CAN_value_t* CAN_value_ptrs[NUM_OF_CAN_VALUES] = {&rpm, &throttle, &coolant, &battery, &gear};
 
 void CAN_value_updateTextBuffer(CAN_value_t* CAN_val){
 	switch(CAN_val->type){
@@ -78,24 +86,24 @@ bool CAN_value_updateValue(CAN_value_t* CAN_val, uint16_t CAN_data){
 				float fVal = CAN_data * CAN_val->scale + CAN_val->offset;
 				if(CAN_val->value.f != fVal){
 					CAN_val->value.f = fVal;
-					return true;
-				}}
-				break;
+					return false;//text is no longer updated
+				}
+				break;}
 			case CAN_TYPE_INT8:{
 				int8_t iVal = (int8_t)(CAN_data * CAN_val->scale + CAN_val->offset);
 				if(CAN_val->value.i8 != iVal){
 					CAN_val->value.i8 = iVal;
-					return true;
-				}}
-				break;
+					return false;
+				}
+				break;}
 			case CAN_TYPE_UINT16:{
 				uint16_t uVal = (uint16_t)(CAN_data * CAN_val->scale + CAN_val->offset);
 				if(CAN_val->value.u16 != uVal){
 					CAN_val->value.u16 = uVal;
-					return true;
-				}}
-				break;
-			}
-	return false;
+					return false;
+				}
+				break;}
+	}
+	return true;//text is still updated
 
 }

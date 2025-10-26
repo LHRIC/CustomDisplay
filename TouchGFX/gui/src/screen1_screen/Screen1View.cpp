@@ -2,6 +2,9 @@
 #include <touchgfx/utils.hpp>
 #include <touchgfx/Texts.hpp>
 #include <touchgfx/hal/Types.hpp>
+
+extern "C" uint32_t HAL_GetTick(void);
+
 Screen1View::Screen1View()
 {
 
@@ -28,6 +31,9 @@ void Screen1View::setupScreen()
     gear.textAreaPtr = &GearValue;
     gear.bufferPtr = GearValueBuffer;
     gear.bufferSize = GEARVALUE_SIZE;
+
+    lastMs = HAL_GetTick();
+    frameCount = 0;
 }
 
 void Screen1View::tearDownScreen()
@@ -59,16 +65,32 @@ void Screen1View::updateText(){
 
 void Screen1View::handleTickEvent()
 {
-    //Screen1ViewBase::handleTickEvent();     // Call superclass eventhandler
-//    //tickCounter += 1;
-//    if (tickCounter == 60)
-//    {
-//       //Screen1View::updateText();
-//       tickCounter = 0;
-//    }
+	Screen1ViewBase::handleTickEvent();
+
+	    // Count how many frames (ticks that rendered) occur
+	    frameCount++;
+
+	    uint32_t now = HAL_GetTick();
+	    uint32_t elapsed = now - lastMs;
+
+	    // Update once per second
+	    if (elapsed >= 1000U)
+	    {
+	        // Compute FPS over the last window (in seconds)
+	        // Using ms -> seconds via (elapsed / 1000.0f)
+	        float fps = (float)frameCount * 1000.0f / (float)elapsed;
+	        //uint8_t fpsI = (uint8_t)fps;
+	        Unicode::snprintfFloat(FPSCOUNTERBuffer, FPSCOUNTER_SIZE, "%3.1f", fps);
+	        FPSCOUNTER.invalidateContent();   // redraw the label
+
+	        // Reset window
+	        frameCount = 0;
+	        lastMs = now;
+	    }
 }
 
-void Screen1View::updateCanValue(CAN_value_t* CAN_val)
+
+void Screen1View::updateDisplayValue(CAN_value_t* CAN_val)
 {
     //Update text area or progress bar (make a case for anything with special functionality, default is for text)
 	switch(CAN_val->valueIdentifier){
@@ -80,7 +102,7 @@ void Screen1View::updateCanValue(CAN_value_t* CAN_val)
 		//fill the buffer based on updated value
 		CAN_value_updateTextBuffer(CAN_val);
 		//invalidate text buffer
-		CAN_val->textAreaPtr->invalidate();
+		CAN_val->textAreaPtr->invalidateContent();
 		break;
 	}
 
