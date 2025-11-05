@@ -20,8 +20,6 @@ Model::Model() : modelListener(0)
 
 //define values the screen will need to display
 
-
-
 void Model::tick()
 {
 	for(int i = 0; i < NUM_OF_CAN_VALUES; i++){

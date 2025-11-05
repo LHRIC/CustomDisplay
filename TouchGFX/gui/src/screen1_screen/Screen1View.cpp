@@ -41,28 +41,6 @@ void Screen1View::tearDownScreen()
     Screen1ViewBase::tearDownScreen();
 }
 
-void Screen1View::updateText(){
-
-    // Get the Unicode text from the TextArea
-//    const Unicode::UnicodeChar* text = textArea1.getTypedText().getText();
-//
-//    // Create a buffer for the UTF-8 (ASCII) version
-//    uint8_t asciiBuffer[50];  // must be uint8_t, NOT char
-//    memset(asciiBuffer, 0, sizeof(asciiBuffer));
-//
-//    // Convert Unicode to UTF-8
-//    Unicode::toUTF8(text, asciiBuffer, sizeof(asciiBuffer));
-//
-//    // Print as a string (cast to char* for printf)
-//    touchgfx_printf("Text content: %s\n", (char*)asciiBuffer);
-	//char textArea1Buffer[10];
-	//touchgfx_printf("%d", Unicode::strncpy(textArea1Buffer, "zoom", TEXTAREA1_SIZE));
-//	counter++;
-//	Unicode::snprintf(textArea1Buffer, TEXTAREA1_SIZE, "%d", counter);
-//	textArea1.resizeToCurrentText(); // optional, will resize the box to fit the text if it is too small
-//	textArea1.invalidate();
-}
-
 void Screen1View::handleTickEvent()
 {
 	Screen1ViewBase::handleTickEvent();
@@ -74,7 +52,7 @@ void Screen1View::handleTickEvent()
 	    uint32_t elapsed = now - lastMs;
 
 	    // Update once per second
-	    if (elapsed >= 1000U)
+	    if (elapsed > 1000)
 	    {
 	        // Compute FPS over the last window (in seconds)
 	        // Using ms -> seconds via (elapsed / 1000.0f)

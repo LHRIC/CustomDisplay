@@ -11,7 +11,6 @@ public:
     virtual ~Screen1View() {}
     virtual void setupScreen();
     virtual void tearDownScreen();
-    void updateText(); //increments speed number
     virtual void handleTickEvent();
     void updateDisplayValue(CAN_value_t* CAN_val);//updates speed number with CAN value
 

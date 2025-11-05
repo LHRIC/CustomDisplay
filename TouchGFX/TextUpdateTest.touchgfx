@@ -76,17 +76,16 @@
           {
             "Type": "ImageProgress",
             "Name": "imageProgress1",
-            "X": 245,
-            "Y": 25,
-            "Width": 300,
-            "Height": 10,
-            "FileNameProgress": "__generated\\alternate_theme_images_widgets_imageprogress_plain_normal_medium_active.png",
+            "X": 99,
+            "Y": 11,
+            "Width": 599,
+            "Height": 59,
+            "FileNameProgress": "filledRPMbar.png",
             "AnchorAtZero": true,
             "Direction": "Right",
-            "Preset": "alternate_theme\\presets\\imageprogress\\plain\\normal\\medium_active.json",
-            "FileNameBackground": "__generated\\alternate_theme_images_widgets_imageprogress_plain_normal_medium.png",
-            "IndicatorPositionWidth": 300,
-            "IndicatorPositionHeight": 10,
+            "FileNameBackground": "backgroundRPMbar.png",
+            "IndicatorPositionWidth": 600,
+            "IndicatorPositionHeight": 60,
             "ProgressRangeMax": 15000,
             "ProgressRangeSteps": 100
           },
@@ -94,7 +93,7 @@
             "Type": "TextArea",
             "Name": "GearLabel",
             "X": 352,
-            "Y": 55,
+            "Y": 79,
             "Width": 96,
             "Height": 48,
             "TextId": "__SingleUse_D4O1",
@@ -174,8 +173,10 @@
           {
             "Type": "TextArea",
             "Name": "FPSCOUNTER",
-            "Width": 182,
-            "Height": 48,
+            "X": 6,
+            "Y": 93,
+            "Width": 93,
+            "Height": 20,
             "TextId": "__SingleUse_R0FT",
             "TextRotation": "0",
             "Color": {
@@ -191,7 +192,71 @@
             }
           }
         ],
-        "Interactions": []
+        "Interactions": [
+          {
+            "InteractionName": "Interaction1",
+            "Trigger": {
+              "Type": "TriggerWhen",
+              "ActionCustomTypeName": "Call Screen1 transitionToDiagnostics"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "Diagnostics"
+            }
+          }
+        ],
+        "CustomActions": [
+          {
+            "Name": "transitionToDiagnostics"
+          }
+        ]
+      },
+      {
+        "Name": "Diagnostics",
+        "Components": [
+          {
+            "Type": "Box",
+            "Name": "box1",
+            "Width": 800,
+            "Height": 480
+          },
+          {
+            "Type": "TextArea",
+            "Name": "DiagnosticsLabel",
+            "X": 285,
+            "Y": 16,
+            "Width": 230,
+            "Height": 48,
+            "TextId": "__SingleUse_D4R5",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "AutoSize": true
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "Interaction1",
+            "Trigger": {
+              "Type": "TriggerWhen",
+              "ActionCustomTypeName": "Call Diagnostics transitionToScreen1"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionNone",
+              "ActionComponent": "Screen1"
+            }
+          }
+        ],
+        "CustomActions": [
+          {
+            "Name": "transitionToScreen1"
+          }
+        ]
       }
     ],
     "CustomContainerDefinitions": [],

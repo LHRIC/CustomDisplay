@@ -184,8 +184,20 @@
     <Filter Include="Header Files\generated\simulator\include\simulator\video">
       <UniqueIdentifier>2AE91406-A1A7-20D1-EFD3-9B3E06620BB1</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\gui\diagnostics_screen">
+      <UniqueIdentifier>8EE9DA7D-6F77-F2CF-5E8E-C991AAC0C7F3</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\diagnostics_screen">
+      <UniqueIdentifier>AF173F48-CED8-76CE-5278-9B278C9046D9</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\generated\gui_generated\diagnostics_screen">
+      <UniqueIdentifier>131ADC2A-BAB6-07AD-4464-BEBA3724226E</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\generated\gui_generated\diagnostics_screen">
+      <UniqueIdentifier>35B49A17-FA8A-59C5-EBAE-2D5B332DCA49</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files\gui\include">
-      <UniqueIdentifier>7F520C9E-EBB8-A287-AAA4-1EE835706A40</UniqueIdentifier>
+      <UniqueIdentifier>687A97BE-FF0D-0BD2-AE59-F2BD494B849E</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -227,6 +239,15 @@
     </ClCompile>
     <ClCompile Include="..\..\generated\simulator\src\video\SoftwareMJPEGDecoder.cpp">
       <Filter>Source Files\generated\simulator\video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\diagnostics_screen\DiagnosticsPresenter.cpp">
+      <Filter>Source Files\gui\diagnostics_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\diagnostics_screen\DiagnosticsView.cpp">
+      <Filter>Source Files\gui\diagnostics_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\generated\gui_generated\src\diagnostics_screen\DiagnosticsViewBase.cpp">
+      <Filter>Source Files\generated\gui_generated\diagnostics_screen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -680,6 +701,18 @@
       <Filter>Header Files\generated\simulator\include\simulator\video</Filter>
     </ClInclude>
     <ClInclude Include="..\..\gui\include\can_types.hpp">
+      <Filter>Header Files\gui\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\diagnostics_screen\DiagnosticsPresenter.hpp">
+      <Filter>Header Files\gui\diagnostics_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\diagnostics_screen\DiagnosticsView.hpp">
+      <Filter>Header Files\gui\diagnostics_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\diagnostics_screen\DiagnosticsViewBase.hpp">
+      <Filter>Header Files\generated\gui_generated\diagnostics_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\uart_flags.hpp">
       <Filter>Header Files\gui\include</Filter>
     </ClInclude>
   </ItemGroup>

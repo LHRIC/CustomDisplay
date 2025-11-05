@@ -7,11 +7,15 @@
   <Texts>
     <TextGroup Id="Group1" />
     <TextGroup Id="Unsorted">
-      <Text Id="__SingleUse_4F5X" Alignment="Left" TypographyId="Default">
+      <Text Id="__SingleUse_D4R5" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Diagnostics</Translation>
+        <Translation Language="alphabetnumber">New Text</Translation>
+      </Text>
+      <Text Id="__SingleUse_4F5X" Alignment="Left" TypographyId="Typography1">
         <Translation Language="GB">60.0</Translation>
         <Translation Language="alphabetnumber">New Text</Translation>
       </Text>
-      <Text Id="__SingleUse_R0FT" Alignment="Left" TypographyId="Default">
+      <Text Id="__SingleUse_R0FT" Alignment="Left" TypographyId="Typography1">
         <Translation Language="GB">FPS:&lt;value&gt;</Translation>
         <Translation Language="alphabetnumber">&lt;&gt;.0123456789</Translation>
       </Text>

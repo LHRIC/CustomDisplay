@@ -48,6 +48,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "can_types.hpp"
+#include "uart_flags.hpp"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -68,7 +69,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+uint8_t UART_rxData;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -306,6 +307,16 @@ static void SystemPower_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+	int8_t testValue = 5;
+	gear.textUpdated = CAN_value_updateValue(&gear, testValue);
+	uartRequestScreenChange = true; //tests if the interrupt itself is called
+    if(GPIO_Pin == GPIO_PIN_3) //think the issue has to do with the pin being pin 3 but  If Pin Is EXTI Line3
+    {
+    	uartRequestScreenChange = true;   // set flag for TouchGFX thread
+    }
+}
 void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs){
 	  FDCAN_RxHeaderTypeDef rxHeader;   //Declare the header
 	  uint8_t rxData[8];                //Buffer for the received data
