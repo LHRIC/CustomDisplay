@@ -2,7 +2,7 @@
 #define FRONTENDAPPLICATION_HPP
 
 #include <gui_generated/common/FrontendApplicationBase.hpp>
-#include "uart_flags.hpp"
+#include "gpio_flags.hpp"
 
 class FrontendHeap;
 

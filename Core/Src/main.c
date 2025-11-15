@@ -48,7 +48,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "can_types.hpp"
-#include "uart_flags.hpp"
+#include "gpio_flags.hpp"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -307,12 +307,9 @@ static void SystemPower_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+void HAL_GPIO_EXTI_Rising_Callback(uint16_t GPIO_Pin)
 {
-	int8_t testValue = 5;
-	gear.textUpdated = CAN_value_updateValue(&gear, testValue);
-	uartRequestScreenChange = true; //tests if the interrupt itself is called
-    if(GPIO_Pin == GPIO_PIN_3) //think the issue has to do with the pin being pin 3 but  If Pin Is EXTI Line3
+    if(GPIO_Pin == User_BTN_Pin) //think the issue has to do with the pin being pin 3 but  If Pin Is EXTI Line3
     {
     	uartRequestScreenChange = true;   // set flag for TouchGFX thread
     }

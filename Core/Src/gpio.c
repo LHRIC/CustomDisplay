@@ -92,10 +92,10 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Alternate = GPIO_AF0_MCO;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : PH3 */
-  GPIO_InitStruct.Pin = GPIO_PIN_3;
+  /*Configure GPIO pins : User_BTN_Pin PH11 */
+  GPIO_InitStruct.Pin = User_BTN_Pin|GPIO_PIN_11;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
-  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOH, &GPIO_InitStruct);
 
   /*Configure GPIO pin : LCD_DISP_RESET_Pin */
@@ -166,12 +166,6 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(R_RST_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : PH11 */
-  GPIO_InitStruct.Pin = GPIO_PIN_11;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(GPIOH, &GPIO_InitStruct);
-
   /*Configure GPIO pin : R_INT_Pin */
   GPIO_InitStruct.Pin = R_INT_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
@@ -184,6 +178,12 @@ void MX_GPIO_Init(void)
 
   HAL_NVIC_SetPriority(EXTI6_IRQn, 5, 0);
   HAL_NVIC_EnableIRQ(EXTI6_IRQn);
+
+  HAL_NVIC_SetPriority(EXTI11_IRQn, 5, 0);
+  HAL_NVIC_EnableIRQ(EXTI11_IRQn);
+
+  HAL_NVIC_SetPriority(EXTI15_IRQn, 5, 0);
+  HAL_NVIC_EnableIRQ(EXTI15_IRQn);
 
 }
 

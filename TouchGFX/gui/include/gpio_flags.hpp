@@ -1,5 +1,5 @@
-#ifndef UART_FLAGS_H
-#define UART_FLAGS_H
+#ifndef GPIO_FLAGS_H
+#define GPIO_FLAGS_H
 
 #include <stdbool.h>
 
