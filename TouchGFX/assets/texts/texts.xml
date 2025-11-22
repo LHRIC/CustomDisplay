@@ -7,8 +7,64 @@
   <Texts>
     <TextGroup Id="Group1" />
     <TextGroup Id="Unsorted">
-      <Text Id="__SingleUse_D4R5" Alignment="Left" TypographyId="Default">
-        <Translation Language="GB">Diagnostics</Translation>
+      <Text Id="__SingleUse_WBTS" Alignment="Left" TypographyId="Typography1">
+        <Translation Language="GB">Rear</Translation>
+        <Translation Language="alphabetnumber">New Text</Translation>
+      </Text>
+      <Text Id="__SingleUse_BBI8" Alignment="Left" TypographyId="Typography1">
+        <Translation Language="GB">Front</Translation>
+        <Translation Language="alphabetnumber">New Text</Translation>
+      </Text>
+      <Text Id="__SingleUse_6XZN" Alignment="Left" TypographyId="Typography1">
+        <Translation Language="GB">Brake Pressure</Translation>
+        <Translation Language="alphabetnumber">New Text</Translation>
+      </Text>
+      <Text Id="__SingleUse_TQOQ" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">00000</Translation>
+        <Translation Language="alphabetnumber">New Text</Translation>
+      </Text>
+      <Text Id="__SingleUse_6VUX" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+        <Translation Language="alphabetnumber">&lt;*&gt;1234567890.,</Translation>
+      </Text>
+      <Text Id="__SingleUse_QQ8Z" Alignment="Left" TypographyId="Typography1">
+        <Translation Language="GB">RPM</Translation>
+        <Translation Language="alphabetnumber">New Text</Translation>
+      </Text>
+      <Text Id="__SingleUse_852J" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">00.00</Translation>
+        <Translation Language="alphabetnumber">New Text</Translation>
+      </Text>
+      <Text Id="__SingleUse_WU2E" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+        <Translation Language="alphabetnumber">&lt;*&gt;1234567890.,</Translation>
+      </Text>
+      <Text Id="__SingleUse_UJ95" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">000</Translation>
+        <Translation Language="alphabetnumber">New Text</Translation>
+      </Text>
+      <Text Id="__SingleUse_KJLV" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+        <Translation Language="alphabetnumber">&lt;*&gt;1234567890.,</Translation>
+      </Text>
+      <Text Id="__SingleUse_V2RY" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">000.0</Translation>
+        <Translation Language="alphabetnumber">New Text</Translation>
+      </Text>
+      <Text Id="__SingleUse_DLR7" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;%</Translation>
+        <Translation Language="alphabetnumber">&lt;*&gt;1234567890.,</Translation>
+      </Text>
+      <Text Id="__SingleUse_N615" Alignment="Left" TypographyId="Typography1">
+        <Translation Language="GB">Batt V</Translation>
+        <Translation Language="alphabetnumber">New Text</Translation>
+      </Text>
+      <Text Id="__SingleUse_ALQA" Alignment="Left" TypographyId="Typography1">
+        <Translation Language="GB">Coolant C</Translation>
+        <Translation Language="alphabetnumber">New Text</Translation>
+      </Text>
+      <Text Id="__SingleUse_OTDQ" Alignment="Left" TypographyId="Typography1">
+        <Translation Language="GB">Throttle</Translation>
         <Translation Language="alphabetnumber">New Text</Translation>
       </Text>
       <Text Id="__SingleUse_4F5X" Alignment="Left" TypographyId="Typography1">
@@ -81,6 +137,6 @@
     <Typography Id="Default" Font="verdana.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Large" Font="verdana.ttf" Size="160" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
     <Typography Id="Small" Font="verdana.ttf" Size="10" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="Typography1" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Typography1" Font="verdana.ttf" Size="30" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
   </Typographies>
 </TextDatabase>
