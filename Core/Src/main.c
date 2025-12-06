@@ -47,7 +47,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "can_types.hpp"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -176,25 +176,9 @@ int main(void)
   sFilterConfig.FilterID1 = 0x000;
   sFilterConfig.FilterID2 = 0x000;
   HAL_FDCAN_ConfigFilter(&hfdcan1, &sFilterConfig);
-
+  HAL_FDCAN_ActivateNotification(&hfdcan1, FDCAN_IT_RX_FIFO0_NEW_MESSAGE, 0);
   // 2. Start FDCAN
   HAL_FDCAN_Start(&hfdcan1);
-//  printf("loop started \r\n");
-//  while (1)
-//  {
-//      if (HAL_FDCAN_GetRxFifoFillLevel(&hfdcan1, FDCAN_RX_FIFO0) > 0)
-//      {
-//    	  //printf("DATA FOUND!!! \r\n");
-//          FDCAN_RxHeaderTypeDef rxHeader;
-//          uint8_t rxData[8];
-//          HAL_FDCAN_GetRxMessage(&hfdcan1, FDCAN_RX_FIFO0, &rxHeader, rxData);
-//          printf("[%d", rxData[0]);
-//          for(int i = 1; i < sizeof(rxData); i++) {
-//        	  printf(", %d", rxData[i]);
-//          }
-//          printf("]\n");
-//      }
-//  }
 
   /* USER CODE END 2 */
 
@@ -322,7 +306,43 @@ static void SystemPower_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs){
+	  FDCAN_RxHeaderTypeDef rxHeader;   //Declare the header
+	  uint8_t rxData[8];                //Buffer for the received data
+      if (HAL_FDCAN_GetRxMessage(&hfdcan1, FDCAN_RX_FIFO0, &rxHeader, rxData) == HAL_OK)
+      {
+    	uint16_t CANValue;
+      	switch(rxHeader.Identifier){//switch case based on incoming CAN ID
+      	//IMPORTANT: THIS IS FOR BOTH RPM AND THROTTLE
+      	case CAN_ID_RPM_THROTTLE:
+      		//read raw CAN data
+      		CANValue = CAN_GetData_16(rpm.startByte, rxData);
+      		//if the value is different, update it and send signal to viewer
+      		rpm.textUpdated = CAN_value_updateValue(&rpm, CANValue);
 
+			//for throttle
+			CANValue = CAN_GetData_16(throttle.startByte, rxData);
+			throttle.textUpdated = CAN_value_updateValue(&throttle, CANValue);
+      		break;
+
+      	case CAN_ID_COOLANT://coolant
+      		CANValue = CAN_GetData_16(coolant.startByte, rxData);
+      		coolant.textUpdated = CAN_value_updateValue(&coolant, CANValue);
+			break;
+
+      	case CAN_ID_BATTERY://battery
+			CANValue = CAN_GetData_16(battery.startByte, rxData);
+			battery.textUpdated = CAN_value_updateValue(&battery, CANValue);
+			break;
+
+      	case CAN_ID_GEAR:{//gear (int8_t) in it's own scope for int8_t CANValue
+      		int8_t CANValue = CAN_GetData_8(gear.startByte, rxData);
+      		gear.textUpdated = CAN_value_updateValue(&gear, CANValue);
+      	}
+			break;
+      	}
+      }
+  }
 /* USER CODE END 4 */
 
 /**

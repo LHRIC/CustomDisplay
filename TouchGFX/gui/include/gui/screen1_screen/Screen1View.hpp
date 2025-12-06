@@ -13,10 +13,11 @@ public:
     virtual void tearDownScreen();
     void updateText(); //increments speed number
     virtual void handleTickEvent();
-    void updateCanValue(uint16_t value);//updates speed number with CAN value
+    void updateDisplayValue(CAN_value_t* CAN_val);//updates speed number with CAN value
 
 protected:
-    int tickCounter;
+    uint32_t lastMs;
+    uint16_t frameCount;
 };
 
 #endif // SCREEN1VIEW_HPP

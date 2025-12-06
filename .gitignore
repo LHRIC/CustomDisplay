@@ -1,6 +1,7 @@
 # Build Objects
 build
 Debug
+Release
 
 # TouchGFX Generated Files
 generated

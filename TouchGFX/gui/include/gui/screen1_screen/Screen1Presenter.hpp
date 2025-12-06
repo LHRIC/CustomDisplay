@@ -26,7 +26,7 @@ public:
     virtual void deactivate();
 
     virtual ~Screen1Presenter() {}
-    virtual void onCanMessageReceived(uint16_t value);
+    virtual void onCanMessageReceived(CAN_value_t* CAN_val);
 
 
 private:
