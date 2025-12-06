@@ -197,7 +197,11 @@
       <UniqueIdentifier>35B49A17-FA8A-59C5-EBAE-2D5B332DCA49</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\gui\include">
+<<<<<<< HEAD
       <UniqueIdentifier>AA5614D9-2793-2E73-DE2D-1506CC9ECFEC</UniqueIdentifier>
+=======
+      <UniqueIdentifier>7282F6D2-F0D7-5C51-FC06-687C8C8156BC</UniqueIdentifier>
+>>>>>>> fa86b0890b44b9a555aea157add5e1e0ae352e56
     </Filter>
   </ItemGroup>
   <ItemGroup>
