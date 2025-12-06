@@ -197,7 +197,7 @@
       <UniqueIdentifier>35B49A17-FA8A-59C5-EBAE-2D5B332DCA49</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\gui\include">
-      <UniqueIdentifier>39FA2848-29C8-FE18-1C80-C7132E22347E</UniqueIdentifier>
+      <UniqueIdentifier>AA5614D9-2793-2E73-DE2D-1506CC9ECFEC</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -712,7 +712,7 @@
     <ClInclude Include="..\..\generated\gui_generated\include\gui_generated\diagnostics_screen\DiagnosticsViewBase.hpp">
       <Filter>Header Files\generated\gui_generated\diagnostics_screen</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\gui\include\uart_flags.hpp">
+    <ClInclude Include="..\..\gui\include\gpio_flags.hpp">
       <Filter>Header Files\gui\include</Filter>
     </ClInclude>
   </ItemGroup>
