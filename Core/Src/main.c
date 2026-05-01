@@ -19,7 +19,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "jpeg_utils_conf.h"
-#include "cmsis_os2.h"
 #include "adc.h"
 #include "cordic.h"
 #include "crc.h"
@@ -75,7 +74,6 @@
 void SystemClock_Config(void);
 void PeriphCommonClock_Config(void);
 static void SystemPower_Config(void);
-void MX_FREERTOS_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -153,8 +151,6 @@ int main(void)
   MX_USB_OTG_HS_USB_Init();
   MX_ADC1_Init();
   MX_TouchGFX_Init();
-  /* Call PreOsInit function */
-  MX_TouchGFX_PreOSInit();
   /* USER CODE BEGIN 2 */
   if (HAL_TIM_PWM_Start(&htim15, TIM_CHANNEL_1) != HAL_OK)
     {
@@ -179,19 +175,7 @@ int main(void)
   HAL_FDCAN_ActivateNotification(&hfdcan1, FDCAN_IT_RX_FIFO0_NEW_MESSAGE, 0);
   // 2. Start FDCAN
   HAL_FDCAN_Start(&hfdcan1);
-
   /* USER CODE END 2 */
-
-  /* Init scheduler */
-  osKernelInitialize();
-
-  /* Call init function for freertos objects (in app_freertos.c) */
-  MX_FREERTOS_Init();
-
-  /* Start scheduler */
-  osKernelStart();
-
-  /* We should never get here as control is now taken by the scheduler */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
@@ -199,6 +183,7 @@ int main(void)
   {
     /* USER CODE END WHILE */
 
+  MX_TouchGFX_Process();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -320,9 +305,9 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
       		//if the value is different, update it and send signal to viewer
       		rpm.textUpdated = CAN_value_updateValue(&rpm, CANValue);
 
-			//for throttle
-			CANValue = CAN_GetData_16(throttle.startByte, rxData);
-			throttle.textUpdated = CAN_value_updateValue(&throttle, CANValue);
+			  //for throttle
+          CANValue = CAN_GetData_16(throttle.startByte, rxData);
+          throttle.textUpdated = CAN_value_updateValue(&throttle, CANValue);
       		break;
 
       	case CAN_ID_COOLANT://coolant
@@ -340,9 +325,21 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
       		gear.textUpdated = CAN_value_updateValue(&gear, CANValue);
       	}
 			break;
+
+      case CAN_ID_FAULT:{//scope for int8
+      		int8_t CANValue = CAN_GetData_8(fault.startByte, rxData);
+      		fault.textUpdated = CAN_value_updateValue(&fault, CANValue);
+      	}
+			break;
       	}
       }
   }
+  void xTaskCallApplicationTaskHook(void* pxTCB, void* pvParameter)
+{
+    // Empty hook - can be filled in later if needed
+    (void)pxTCB;
+    (void)pvParameter;
+}
 /* USER CODE END 4 */
 
 /**
@@ -381,8 +378,7 @@ void Error_Handler(void)
   }
   /* USER CODE END Error_Handler_Debug */
 }
-
-#ifdef  USE_FULL_ASSERT
+#ifdef USE_FULL_ASSERT
 /**
   * @brief  Reports the name of the source file and the source line number
   *         where the assert_param error has occurred.

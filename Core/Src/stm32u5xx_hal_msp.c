@@ -74,8 +74,6 @@ void HAL_MspInit(void)
   HAL_PWREx_EnableVddA();
 
   /* System interrupt init*/
-  /* PendSV_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(PendSV_IRQn, 15, 0);
 
   /* USER CODE BEGIN MspInit 1 */
 

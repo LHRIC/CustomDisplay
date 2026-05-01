@@ -8,7 +8,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2025 STMicroelectronics.
+  * Copyright (c) 2026 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -43,10 +43,8 @@ extern "C" {
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/
-void MX_TouchGFX_PreOSInit(void);
 void MX_TouchGFX_Init(void);
 void MX_TouchGFX_Process(void);
-void TouchGFX_Task(void* argument);
 
 /* USER CODE BEGIN EFP */
 

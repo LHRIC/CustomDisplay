@@ -3,7 +3,10 @@ build
 Debug
 Release
 
-# TouchGFX Generated Files
-generated
-simulator/msvs/.vs
+#CMake
+CMakePresets.json
+/cmake
+
+#vscode
+/.vscode
 

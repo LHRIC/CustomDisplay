@@ -3,13 +3,13 @@
   ******************************************************************************
   * File Name          : TouchGFXHAL.hpp
   ******************************************************************************
-  * This file was created by TouchGFX Generator 4.23.2. This file is only
+  * This file was created by TouchGFX Generator 4.26.0. This file is only
   * generated once! Delete this file from your project and re-generate code
   * using STM32CubeMX or change this file manually to update it.
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2024 STMicroelectronics.
+  * Copyright (c) 2026 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -25,7 +25,6 @@
 /* USER CODE BEGIN TouchGFXHAL.hpp */
 
 #include <TouchGFXGeneratedHAL.hpp>
-#include <CortexMMCUInstrumentation.hpp>
 
 /**
  * @class TouchGFXHAL
@@ -59,27 +58,27 @@ public:
     /**
      * @fn virtual void TouchGFXHAL::disableInterrupts();
      *
-     * @brief Disables the DMA and LCD interrupts.
+     * @brief Disables the DMA, LDC, and GPU2D (if enabled) interrupts.
      *
-     *        Disables the DMA and LCD interrupts.
+     *        Disables the DMA, LDC, and GPU2D (if enabled) interrupts.
      */
     virtual void disableInterrupts();
 
     /**
      * @fn virtual void TouchGFXHAL::enableInterrupts();
      *
-     * @brief Enables the DMA and LCD interrupts.
+     * @brief Enables the DMA, LCD, and GPU2D (if enabled) interrupts.
      *
-     *        Enables the DMA and LCD interrupts.
+     *        Enables the DMA, LCD, and GPU2D (if enabled) interrupts.
      */
     virtual void enableInterrupts();
 
     /**
      * @fn virtual void TouchGFXHAL::configureInterrupts();
      *
-     * @brief Sets the DMA and LCD interrupt priorities.
+     * @brief Sets the DMA, LCD, and GPU2D (if enabled) interrupt priorities.
      *
-     *        Sets the DMA and LCD interrupt priorities.
+     *        Sets the DMA, LCD, and GPU2D (if enabled) interrupt priorities.
      */
     virtual void configureInterrupts();
 
@@ -117,8 +116,6 @@ public:
      * @brief This function is called whenever the framework has performed a partial draw.
      *
      *        This function is called whenever the framework has performed a partial draw.
-     *        On the STM32F7, make sure to clean and invalidate the data cache. This is to
-     *        ensure that LTDC sees correct data when transferring to the display.
      *
      * @param rect The area of the screen that has been drawn, expressed in absolute coordinates.
      *
@@ -163,8 +160,6 @@ protected:
      * @param [in,out] adr New frame buffer address.
      */
     virtual void setTFTFrameBuffer(uint16_t* adr);
-private:
-    touchgfx::CortexMMCUInstrumentation instrumentation;
 };
 
 /* USER CODE END TouchGFXHAL.hpp */

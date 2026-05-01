@@ -11,13 +11,13 @@ public:
     virtual ~Screen1View() {}
     virtual void setupScreen();
     virtual void tearDownScreen();
-    void updateText(); //increments speed number
     virtual void handleTickEvent();
     void updateDisplayValue(CAN_value_t* CAN_val);//updates speed number with CAN value
-
 protected:
     uint32_t lastMs;
     uint16_t frameCount;
+    bool flashState;
+    bool shiftFlash;
 };
 
 #endif // SCREEN1VIEW_HPP
