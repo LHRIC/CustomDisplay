@@ -68,6 +68,36 @@ Screen1ViewBase::Screen1ViewBase()
     BatteryValue.setTypedText(touchgfx::TypedText(T___SINGLEUSE_FJOQ));
     add(BatteryValue);
 
+    SpeedLabel.setXY(60, 155);
+    SpeedLabel.setColor(touchgfx::Color::getColorFromRGB(254, 189, 23));
+    SpeedLabel.setLinespacing(0);
+    SpeedLabel.setTypedText(touchgfx::TypedText(T___SINGLEUSE_ZEDS));
+    add(SpeedLabel);
+
+    SpeedValue.setXY(51, 216);
+    SpeedValue.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    SpeedValue.setLinespacing(0);
+    Unicode::snprintf(SpeedValueBuffer, SPEEDVALUE_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_8NN1).getText());
+    SpeedValue.setWildcard(SpeedValueBuffer);
+    SpeedValue.resizeToCurrentText();
+    SpeedValue.setTypedText(touchgfx::TypedText(T___SINGLEUSE_OEOA));
+    add(SpeedValue);
+
+    RPMLabel.setXY(640, 155);
+    RPMLabel.setColor(touchgfx::Color::getColorFromRGB(254, 189, 23));
+    RPMLabel.setLinespacing(0);
+    RPMLabel.setTypedText(touchgfx::TypedText(T___SINGLEUSE_HTJY));
+    add(RPMLabel);
+
+    SpeedValue_1.setXY(621, 216);
+    SpeedValue_1.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    SpeedValue_1.setLinespacing(0);
+    Unicode::snprintf(SpeedValue_1Buffer, SPEEDVALUE_1_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_IWNQ).getText());
+    SpeedValue_1.setWildcard(SpeedValue_1Buffer);
+    SpeedValue_1.resizeToCurrentText();
+    SpeedValue_1.setTypedText(touchgfx::TypedText(T___SINGLEUSE_UMP9));
+    add(SpeedValue_1);
+
     CoolantValue.setXY(342, 374);
     CoolantValue.setColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
     CoolantValue.setLinespacing(0);

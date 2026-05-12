@@ -83,8 +83,6 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
 
     TouchGFX/generated/images/src/BitmapDatabase.cpp
     TouchGFX/generated/images/src/SVGDatabase.cpp
-    TouchGFX/generated/images/src/__generated/image_alternate_theme_images_widgets_imageprogress_plain_normal_large.cpp
-    TouchGFX/generated/images/src/__generated/image_alternate_theme_images_widgets_imageprogress_plain_normal_large_action.cpp
     TouchGFX/generated/images/src/image_backgroundRPMbar.cpp
     TouchGFX/generated/images/src/image_filledRPMbar.cpp
 

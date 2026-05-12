@@ -89,9 +89,22 @@ CAN_value_t fault = {
 	{.i8 = 0},
 	{.i8 = 0}
 };
+CAN_value_t speed = {
+	CAN_ID_SPEED,
+	{.u16 = 0},
+	0,
+	CAN_TYPE_UINT16,
+	SPEED,
+	0.1,
+	0.0,
+	true,
+	false,
+	{.u16 = 0},
+	{.u16 = 0}
+};
 
 
-CAN_value_t* CAN_value_ptrs[NUM_OF_CAN_VALUES] = {&rpm, &throttle, &coolant, &battery, &gear, &fault};
+CAN_value_t* CAN_value_ptrs[NUM_OF_CAN_VALUES] = {&rpm, &throttle, &coolant, &battery, &gear, &fault, &speed};
 
 void CAN_value_updateTextBuffer(CAN_value_t* CAN_val){
 	switch(CAN_val->type){

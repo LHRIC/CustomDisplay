@@ -37,6 +37,16 @@ void Screen1View::setupScreen()
 	fault.textAreaPtr.noWildcard = &SHUTDOWNWARNING;
 	fault.wildcard = false;
 
+	rpm.textAreaPtr.wildcard = &SpeedValue_1;
+	rpm.bufferPtr = SpeedValue_1Buffer;
+	rpm.bufferSize = SPEEDVALUE_1_SIZE;
+	rpm.wildcard = true;
+
+	speed.textAreaPtr.wildcard = &SpeedValue;
+	speed.bufferPtr = SpeedValueBuffer;
+	speed.bufferSize = SPEEDVALUE_SIZE;
+	speed.wildcard = true;
+
 	FPSCOUNTER.setVisible(false);//remove or set to true if we want fps counter
 	ShiftLight.setVisible(false);
 
@@ -104,6 +114,10 @@ void Screen1View::updateDisplayValue(CAN_value_t* CAN_val)
 	case RPM://rpm progress bar
 		imageProgress1.setValue(CAN_val->value.u16);
 		imageProgress1.invalidate();
+		//fill the buffer based on updated value
+		CAN_value_updateTextBuffer(CAN_val);
+		//invalidate text buffer
+		CAN_val->textAreaPtr.wildcard->invalidateContent();
 		if(CAN_val->value.u16 > 12500){
 			shiftFlash = true;
 		}

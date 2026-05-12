@@ -90,7 +90,22 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-
+/*
+HOW TO ADD A GENERIC ITEM TO DISPLAY:
+  1. In can_types.hpp:
+    - increment NUM_OF_CAN_VALUES
+    - #define the new CAN_ID
+    - declare the new can_type in the extern list
+    - add to CAN_ValueType enum
+  2. In can_types.cpp:
+    - define new can_type with non-cpp starting values
+    - add to CAN_value_ptrs array
+  3. In main.cpp:
+    - add to switch statement in RxFifo0Callback
+  4. In Screen1View.cpp:
+    - add cpp starting values (UI related) in setupScreen
+    - add "special" visual functionality to updateDisplayValue if needed
+*/
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -331,7 +346,11 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
       		fault.textUpdated = CAN_value_updateValue(&fault, CANValue);
       	}
 			break;
-      	}
+      case CAN_ID_SPEED:
+			  CANValue = CAN_GetData_16(speed.startByte, rxData);
+			  speed.textUpdated = CAN_value_updateValue(&speed, CANValue);
+      break;
+      }
       }
   }
   void xTaskCallApplicationTaskHook(void* pxTCB, void* pvParameter)

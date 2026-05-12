@@ -30,7 +30,8 @@ typedef enum {
     COOLANT,
     GEAR,
     BATTERY,
-    FAULT
+    FAULT,
+    SPEED
 } CAN_ValueIdentifier;
 
 typedef union {
@@ -67,17 +68,18 @@ typedef struct CAN_value_t {
 } CAN_value_t;
 
 // Shared CAN IDs and extern structs
-#define NUM_OF_CAN_VALUES 6
+#define NUM_OF_CAN_VALUES 7
 
 #define CAN_ID_RPM_THROTTLE      0x360
 #define CAN_ID_COOLANT  0x3E0
 #define CAN_ID_GEAR     0x470
 #define CAN_ID_BATTERY  0x372
 #define CAN_ID_FAULT  0x600
+#define CAN_ID_SPEED 0x370
 
 
 // These are declared in can_types.cpp
-extern CAN_value_t rpm, coolant, battery, throttle, gear, fault;
+extern CAN_value_t rpm, coolant, battery, throttle, gear, fault, speed;
 extern CAN_value_t* CAN_value_ptrs[NUM_OF_CAN_VALUES];
 
 //helper functions to read CAN data

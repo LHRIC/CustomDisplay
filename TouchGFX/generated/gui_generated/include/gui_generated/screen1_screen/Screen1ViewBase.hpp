@@ -36,6 +36,10 @@ protected:
     touchgfx::TextArea CoolantLabel;
     touchgfx::TextAreaWithOneWildcard GearValue;
     touchgfx::TextAreaWithOneWildcard BatteryValue;
+    touchgfx::TextArea SpeedLabel;
+    touchgfx::TextAreaWithOneWildcard SpeedValue;
+    touchgfx::TextArea RPMLabel;
+    touchgfx::TextAreaWithOneWildcard SpeedValue_1;
     touchgfx::TextAreaWithOneWildcard CoolantValue;
     touchgfx::TextAreaWithOneWildcard ThrottleValue;
     touchgfx::TextAreaWithOneWildcard FPSCOUNTER;
@@ -49,6 +53,10 @@ protected:
     touchgfx::Unicode::UnicodeChar GearValueBuffer[GEARVALUE_SIZE];
     static const uint16_t BATTERYVALUE_SIZE = 10;
     touchgfx::Unicode::UnicodeChar BatteryValueBuffer[BATTERYVALUE_SIZE];
+    static const uint16_t SPEEDVALUE_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar SpeedValueBuffer[SPEEDVALUE_SIZE];
+    static const uint16_t SPEEDVALUE_1_SIZE = 10;
+    touchgfx::Unicode::UnicodeChar SpeedValue_1Buffer[SPEEDVALUE_1_SIZE];
     static const uint16_t COOLANTVALUE_SIZE = 10;
     touchgfx::Unicode::UnicodeChar CoolantValueBuffer[COOLANTVALUE_SIZE];
     static const uint16_t THROTTLEVALUE_SIZE = 10;
