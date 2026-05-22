@@ -6,7 +6,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2025 STMicroelectronics.
+  * Copyright (c) 2026 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -18,7 +18,7 @@
 #ifndef TouchGFXGeneratedHAL_HPP
 #define TouchGFXGeneratedHAL_HPP
 
-#include <touchgfx_nema/HALGPU2D.hpp>
+#include <touchgfx/hal/HAL.hpp>
 
 /**
  * @class TouchGFXGeneratedHAL
@@ -27,11 +27,11 @@
  *
  * @sa HAL
  */
-class TouchGFXGeneratedHAL : public touchgfx::HALGPU2D
+class TouchGFXGeneratedHAL : public touchgfx::HAL
 {
 public:
     /**
-     * @fn TouchGFXGeneratedHAL::TouchGFXGeneratedHAL(touchgfx::DMA_Interface& dma, touchgfx::LCD& display, touchgfx::TouchController& tc, uint16_t width, uint16_t height) : touchgfx::HALGPU2D(dma, display, tc, width, height)
+     * @fn TouchGFXGeneratedHAL::TouchGFXGeneratedHAL(touchgfx::DMA_Interface& dma, touchgfx::LCD& display, touchgfx::TouchController& tc, uint16_t width, uint16_t height) : touchgfx::HAL(dma, display, tc, width, height)
      *
      * @brief Constructor.
      *
@@ -44,7 +44,7 @@ public:
      * @param height           Height of the display.
      */
     TouchGFXGeneratedHAL(touchgfx::DMA_Interface& dma, touchgfx::LCD& display, touchgfx::TouchController& tc, uint16_t width, uint16_t height) :
-        touchgfx::HALGPU2D(dma, display, tc, width, height)
+        touchgfx::HAL(dma, display, tc, width, height)
     {
     }
 
@@ -109,19 +109,6 @@ public:
     }
 
     /**
-     * @fn virtual void TouchGFXGeneratedHAL::unlockFrameBuffer();
-     *
-     * @brief Unlocks the framebuffer.
-     *
-     * This specialization is marks DMA2D as un-reserved by the framwork.
-     * @see HAL::unlockFrameBuffer
-     */
-    virtual void unlockFrameBuffer()
-    {
-        HAL::unlockFrameBuffer();
-    }
-
-    /**
      * @fn virtual void TouchGFXGeneratedHAL::flushFrameBuffer(const touchgfx::Rect& rect);
      *
      * @brief This function is called whenever the framework has performed a partial draw.
@@ -168,15 +155,6 @@ public:
      */
     virtual void endFrame();
 
-    /**
-     * @fn virtual void TouchGFXGeneratedHAL::submitGPU2D();
-     *
-     *  @brief This function can be used to explicitly submit any GPU2D operations that
-     *         might be queued in the command list. Can be called if e.g. the task is
-     *         about to sleep, to ensure GPU2D operations are running in the background.
-     */
-    virtual void submitGPU2D();
-
 protected:
     /**
      * @fn virtual uint16_t* TouchGFXGeneratedHAL::getTFTFrameBuffer() const;
@@ -199,6 +177,29 @@ protected:
      * @param [in,out] adr New frame buffer address.
      */
     virtual void setTFTFrameBuffer(uint16_t* adr);
+
+    /**
+     * @fn virtual uint16_t TouchGFXGeneratedHAL::getTFTCurrentLine()
+     *
+     * @brief Get the current line (Y) of the TFT controller
+     *
+     *        This function is used to obtain the progress of the TFT controller. More
+     *        specifically, the line (or Y-value) currently being transferred.
+     *
+     *        Note: The value must be adjusted to account for vertical back porch before
+     *        returning, such that the value is always within the range of 0 &lt;= value &lt;
+     *        actual display height in pixels
+     *
+     *        It is used for the REFRESH_STRATEGY_OPTIM_SINGLE_BUFFER_TFT_CTRL frame refresh
+     *        strategy in order to synchronize frame buffer drawing with TFT controller
+     *        progress. If this strategy is used, the concrete HAL subclass must provide an
+     *        override of this function that returns correct line value. If this strategy is
+     *        not used, then the getTFTCurrentLine function is never called and can be
+     *        disregarded.
+     *
+     * @return In this default implementation, 0xFFFF is returned to signify "not implemented".
+     */
+    virtual uint16_t getTFTCurrentLine();
 
 };
 #endif // TouchGFXGeneratedHAL_HPP

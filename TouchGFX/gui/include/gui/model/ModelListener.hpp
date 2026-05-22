@@ -2,9 +2,7 @@
 #define MODELLISTENER_HPP
 
 #include <gui/model/Model.hpp>
-#include <stdint.h>  // or <cstdint>
 #include "can_types.hpp"
-
 
 class ModelListener
 {
@@ -13,7 +11,6 @@ public:
     
     virtual ~ModelListener() {}
     virtual void onCanMessageReceived(CAN_value_t* CAN_val) {}
-
     void bind(Model* m)
     {
         model = m;

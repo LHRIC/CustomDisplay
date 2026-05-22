@@ -8,7 +8,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2025 STMicroelectronics.
+  * Copyright (c) 2026 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -53,13 +53,6 @@ void touchgfx_taskEntry(void);
 /* USER CODE END PFP */
 
 /**
- * PreOS Initialization function
- */
-void MX_TouchGFX_PreOSInit(void)
-{
-}
-
-/**
  * Initialize TouchGFX application
  */
 void MX_TouchGFX_Init(void)
@@ -73,15 +66,6 @@ void MX_TouchGFX_Init(void)
  * TouchGFX application entry function
  */
 void MX_TouchGFX_Process(void)
-{
-    // Calling forward to touchgfx_taskEntry in C++ domain
-    touchgfx_taskEntry();
-}
-
-/**
- * TouchGFX application thread
- */
-void TouchGFX_Task(void* argument)
 {
     // Calling forward to touchgfx_taskEntry in C++ domain
     touchgfx_taskEntry();

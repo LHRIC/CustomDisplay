@@ -6,7 +6,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2025 STMicroelectronics.
+  * Copyright (c) 2026 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -20,35 +20,8 @@
 #include <touchgfx/hal/OSWrappers.hpp>
 #include <gui/common/FrontendHeap.hpp>
 #include <touchgfx/hal/GPIO.hpp>
-
-#include <touchgfx_nema/GPU2DVectorRenderer.hpp>
-
-#include <HardwareMJPEGDecoder.hpp>
-#include <DirectFrameBufferVideoController.hpp>
-#include <stm32u5xx_hal.h>
-
-HardwareMJPEGDecoder mjpegdecoder1;
-
-namespace
-{
-DirectFrameBufferVideoController<1, Bitmap::RGB888> videoController;
-}
-
-//Singleton Factory
-VideoController& VideoController::getInstance()
-{
-    return videoController;
-}
-
-namespace touchgfx
-{
-VectorRenderer* VectorRenderer::getInstance()
-{
-    static GPU2DVectorRenderer renderer;
-
-    return &renderer;
-}
-} // namespace touchgfx
+#include <touchgfx/hal/PaintImpl.hpp>
+#include <touchgfx/hal/PaintRGB888Impl.hpp>
 
 #include "stm32u5xx.h"
 #include "stm32u5xx_hal_ltdc.h"
@@ -57,46 +30,40 @@ using namespace touchgfx;
 
 namespace
 {
+// Use the section "TouchGFX_Framebuffer" in the linker script to specify the placement of the buffer
+LOCATION_PRAGMA_NOLOAD("TouchGFX_Framebuffer")
+uint32_t frameBuf[(800 * 480 * 3 + 3) / 4] LOCATION_ATTRIBUTE_NOLOAD("TouchGFX_Framebuffer");
 static uint16_t lcd_int_active_line;
 static uint16_t lcd_int_porch_line;
 }
 
 void TouchGFXGeneratedHAL::initialize()
 {
-    HALGPU2D::initialize(16384);
+    HAL::initialize();
     registerEventListener(*(Application::getInstance()));
-    setFrameBufferStartAddresses((void*)0x20000000, (void*)0x20119400, (void*)0);
-
-    /*
-     * Add DMA2D to hardware decoder
-     */
-    mjpegdecoder1.addDMA(dma);
-
-    /*
-     * Add hardware decoder to video controller
-     */
-    videoController.addDecoder(mjpegdecoder1, 0);
+    registerTaskDelayFunction(&OSWrappers::taskDelay);
+    if (!setFrameRefreshStrategy(HAL::REFRESH_STRATEGY_OPTIM_SINGLE_BUFFER_TFT_CTRL))
+    {
+        while (1);
+    }
+    enableLCDControllerInterrupt();
+    enableInterrupts();
+    setFrameBufferStartAddresses((void*)frameBuf, (void*)0, (void*)0);
 }
 
 void TouchGFXGeneratedHAL::configureInterrupts()
 {
-    NVIC_SetPriority(DMA2D_IRQn, 9);
     NVIC_SetPriority(LTDC_IRQn, 9);
-    NVIC_SetPriority(GPU2D_IRQn, 9);
 }
 
 void TouchGFXGeneratedHAL::enableInterrupts()
 {
-    NVIC_EnableIRQ(DMA2D_IRQn);
     NVIC_EnableIRQ(LTDC_IRQn);
-    NVIC_EnableIRQ(GPU2D_IRQn);
 }
 
 void TouchGFXGeneratedHAL::disableInterrupts()
 {
-    NVIC_DisableIRQ(DMA2D_IRQn);
     NVIC_DisableIRQ(LTDC_IRQn);
-    NVIC_DisableIRQ(GPU2D_IRQn);
 }
 
 void TouchGFXGeneratedHAL::enableLCDControllerInterrupt()
@@ -112,17 +79,13 @@ void TouchGFXGeneratedHAL::enableLCDControllerInterrupt()
 
 bool TouchGFXGeneratedHAL::beginFrame()
 {
-    return HALGPU2D::beginFrame();
+    return HAL::beginFrame();
 }
 
 void TouchGFXGeneratedHAL::endFrame()
 {
-    HALGPU2D::endFrame();
-}
-
-void TouchGFXGeneratedHAL::submitGPU2D()
-{
-    HALGPU2D::submitExecBuffer();
+    HAL::endFrame();
+    touchgfx::OSWrappers::signalRenderingDone();
 }
 
 uint16_t* TouchGFXGeneratedHAL::getTFTFrameBuffer() const
@@ -140,12 +103,26 @@ void TouchGFXGeneratedHAL::setTFTFrameBuffer(uint16_t* adr)
 
 void TouchGFXGeneratedHAL::flushFrameBuffer(const touchgfx::Rect& rect)
 {
-    HALGPU2D::flushFrameBuffer(rect);
+    HAL::flushFrameBuffer(rect);
 }
 
 bool TouchGFXGeneratedHAL::blockCopy(void* RESTRICT dest, const void* RESTRICT src, uint32_t numBytes)
 {
-    return HALGPU2D::blockCopy(dest, src, numBytes);
+    return HAL::blockCopy(dest, src, numBytes);
+}
+
+uint16_t TouchGFXGeneratedHAL::getTFTCurrentLine()
+{
+    // This function only requires an implementation if single buffering
+    // on LTDC display is being used (REFRESH_STRATEGY_OPTIM_SINGLE_BUFFER_TFT_CTRL).
+
+    // The CPSR register (bits 15:0) specify current line of TFT controller.
+    uint16_t curr = (uint16_t)(LTDC->CPSR & LTDC_CPSR_CYPOS_Msk);
+    uint16_t backPorchY = (uint16_t)(LTDC->BPCR & LTDC_BPCR_AVBP_Msk) + 1;
+
+    // The semantics of the getTFTCurrentLine() function is to return a value
+    // in the range of 0-totalheight. If we are still in back porch area, return 0.
+    return (curr < backPorchY) ? 0 : (curr - backPorchY);
 }
 
 extern "C"
